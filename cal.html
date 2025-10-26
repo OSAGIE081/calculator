@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Calculations</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .card {
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-5">
+    <h2 class="text-center mb-5 fw-bold text-primary">JavaScript Calculations</h2>
+
+    <div class="row g-4">
+
+      
+      <div class="col-md-6">
+        <div class="card p-4">
+          <h4 class="text-center text-dark">Area of a Trapezium</h4>
+          <div class="mb-3">
+            <label class="form-label">Base 1 (a)</label>
+            <input type="number" id="base1" class="form-control" placeholder="Enter first base">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Base 2 (b)</label>
+            <input type="number" id="base2" class="form-control" placeholder="Enter second base">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Height (h)</label>
+            <input type="number" id="heightTrap" class="form-control" placeholder="Enter height">
+          </div>
+          <button class="btn w-100" onclick="trapeziumArea()">Calculate</button>
+          <p class="mt-3 fw-semibold" id="trapeziumResult"></p>
+        </div>
+      </div>
+
+      
+      <div class="col-md-6">
+        <div class="card p-4">
+          <h4 class="text-center text-dark">Time of Flight (Projectile)</h4>
+          <div class="mb-3">
+            <label class="form-label">Initial Velocity (u) m/s</label>
+            <input type="number" id="velocity" class="form-control" placeholder="Enter initial velocity">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Angle (θ in degrees)</label>
+            <input type="number" id="angle" class="form-control" placeholder="Enter angle">
+          </div>
+          <button class="btn w-100" onclick="timeOfFlight()">Calculate</button>
+          <p class="mt-3 fw-semibold" id="timeResult"></p>
+        </div>
+      </div>
+
+      
+      <div class="col-md-6">
+        <div class="card p-4">
+          <h4 class="text-center text-dark">Area of a Parallelogram</h4>
+          <div class="mb-3">
+            <label class="form-label">Base (b)</label>
+            <input type="number" id="basePara" class="form-control" placeholder="Enter base">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Height (h)</label>
+            <input type="number" id="heightPara" class="form-control" placeholder="Enter height">
+          </div>
+          <button class="btn w-100" onclick="parallelogramArea()">Calculate</button>
+          <p class="mt-3 fw-semibold" id="paraResult"></p>
+        </div>
+      </div>
+
+      
+      <div class="col-md-6">
+        <div class="card p-4">
+          <h4 class="text-center text-dark">Sales Calculator (Profit or Loss)</h4>
+          <div class="mb-3">
+            <label class="form-label">Cost Price (₦)</label>
+            <input type="number" id="costPrice" class="form-control" placeholder="Enter cost price">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Selling Price (₦)</label>
+            <input type="number" id="sellingPrice" class="form-control" placeholder="Enter selling price">
+          </div>
+          <button class="btn w-100" onclick="salesCalc()">Calculate</button>
+          <p class="mt-3 fw-semibold" id="salesResult"></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  
+  <script>
+    
+    function trapeziumArea() {
+      let a = parseFloat(document.getElementById("base1").value);
+      let b = parseFloat(document.getElementById("base2").value);
+      let h = parseFloat(document.getElementById("heightTrap").value);
+      let area = 0.5 * (a + b) * h;
+      document.getElementById("trapeziumResult").innerHTML = `Area = ${area.toFixed(2)} m²`;
+      console.log("Area of Trapezium:", area);
+    }
+
+    
+    function timeOfFlight() {
+      let u = parseFloat(document.getElementById("velocity").value);
+      let theta = parseFloat(document.getElementById("angle").value);
+      const g = 9.8;
+      let radians = theta * (Math.PI / 180);
+      let time = (2 * u * Math.sin(radians)) / g;
+      document.getElementById("timeResult").innerHTML = `Time of flight = ${time.toFixed(2)} s`;
+      console.log("Time of Flight:", time);
+    }
+
+    
+    function parallelogramArea() {
+      let b = parseFloat(document.getElementById("basePara").value);
+      let h = parseFloat(document.getElementById("heightPara").value);
+      let area = b * h;
+      document.getElementById("paraResult").innerHTML = `Area = ${area.toFixed(2)} m²`;
+      console.log("Area of Parallelogram:", area);
+    }
+
+    
+    function salesCalc() {
+      let cost = parseFloat(document.getElementById("costPrice").value);
+      let sell = parseFloat(document.getElementById("sellingPrice").value);
+      let diff = sell - cost;
+      let resultText = "";
+      
+      if (diff > 0) {
+        resultText = `Profit = ₦${diff.toFixed(2)}`;
+      } else if (diff < 0) {
+        resultText = `Loss = ₦${Math.abs(diff).toFixed(2)}`;
+      } else {
+        resultText = `No Profit, No Loss`;
+      }
+
+      document.getElementById("salesResult").innerHTML = resultText;
+      console.log(resultText);
+    }
+  </script>
+</body>
+</html>
